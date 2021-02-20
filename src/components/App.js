@@ -4,16 +4,15 @@ class Timer extends React.Component {
   constructor(props) {
     super(props);
     this.id = 0;
-    this.state = { time: 0, x: 0, y: 0,id:0 };
-    this.handleClick =  this.handleClick.bind(this);
-    this.runTimer =  this.runTimer.bind(this);
+    this.btn = false;
+    this.state = { time: 0, x: 0, y: 0};
     this.ballPosition = {
           left:this.state.x+"px",
           top:this.state.y+"px",
     }
   }
 
-  handleClick(event){
+  handleClick = (event)=>{
     
     switch(event.keyCode){
       case 37:
@@ -62,9 +61,10 @@ class Timer extends React.Component {
     
   }
 
-  runTimer(){
+  runTimer = ()=>{
 
-    if(!this.id){
+    if(!this.btn){
+      this.btn = true;
       document.addEventListener("keydown",this.handleClick);
       this.id = setInterval(()=>{
         this.setState(prevState => {
